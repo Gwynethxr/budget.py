@@ -24,9 +24,29 @@ class GameCharacter:
         return self._mana
     @mana.setter
     def mana(self,new_mana):
+        self._mana = new_mana
+        if new_mana < 0 :
+            self._mana = 0
+        if new_mana > 50:
+            self._health = 100
+    @property
+    def level(self):
+        return self._level
+    def level_up(self):
         pass
+        self._level += 1
+        self.mana = 50
+        self.health = 100
+        print(f"{self.name} level up to {self._level}!")
+
+    def __str__(self):
+        stats = f"Name: {self.name}\nLevel: {self._level}\nHealth: {self._health}\nMana: {self._mana}"
+        return stats
 
 hero = GameCharacter("Kratos")
+print(hero)
 hero.health -= 30 #hero.health = hero.health(100) - 130(new_health) = -30
 hero.mana -= 10
-print(hero.health)
+print(hero)
+hero.level_up()
+print(hero)
